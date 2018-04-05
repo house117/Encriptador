@@ -27,17 +27,18 @@ public class GestionadorArchivo {
         output.close();
         
     }
-    /*public static byte[] abrirArchivo(File selected) throws FileNotFoundException, IOException, ClassNotFoundException{
+    public static byte[] abrirArchivo(File selected) throws FileNotFoundException, IOException, ClassNotFoundException{
         //File file = new File("miArchivo.txt");
         File file = selected;
         FileInputStream input = new FileInputStream(file);
         ObjectInputStream reader = new ObjectInputStream(input);
         
-        Buscaminas resultado = (Buscaminas)reader.readObject();
+        byte[] resultado = (byte[])reader.readObject();
         reader.close();
         input.close();
         return resultado;
     }
+    /*
     public static Buscaminas abrirArchivo() throws FileNotFoundException, IOException, ClassNotFoundException{
         File file = new File("miArchivo.txt");
         FileInputStream input = new FileInputStream(file);

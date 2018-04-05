@@ -31,27 +31,33 @@ public class Encriptador {
     /**
      * @param args the command line arguments
      */
-      private static byte[] iv =
-      { 0x0a, 0x01, 0x02, 0x03, 0x04, 0x0b, 0x0c, 0x0d };
         public static void main(String[] args) throws IOException, NoSuchAlgorithmException, Exception {
-        File file = new File("C:\\Users\\House\\Pictures\\prueba\\Juno_Portrait_002_4k.png");
+        File file = new File("C:\\Users\\House\\Pictures\\prueba\\village_field_poland_mountains_grass_snow_115890_3840x2400");
         String s = "hksjdhaksjd";
         byte[] array = Files.readAllBytes(file.toPath());
         String tipoCifrado = "DES/ECB/PKCS5Padding";
             KeyGenerator kg = KeyGenerator.getInstance("DES");
             kg.init(56); //56 is the key size, fixed for DES
+            
             SecretKey key = kg.generateKey();
+            
         byte[] encrypted = encrypt(array, key, tipoCifrado);
         GestionadorArchivo.guardarArchivito(encrypted, "encriptado.txt");
+        GestionadorArchivoKey.guardarArchivito(key, "llave.txt");
     }
     private static byte[] encrypt(byte[] inpBytes,
     SecretKey key, String xform) throws Exception {
     Cipher cipher = Cipher.getInstance(xform);
-    IvParameterSpec ips = new IvParameterSpec(iv);
     cipher.init(Cipher.ENCRYPT_MODE, key);
     
     return cipher.doFinal(inpBytes);
   }
+        private static byte[] decrypt(byte[] inpBytes,
+        SecretKey key, String xform) throws Exception {
+        Cipher cipher = Cipher.getInstance(xform);
+        cipher.init(Cipher.DECRYPT_MODE, key);
+        return cipher.doFinal(inpBytes);
+    }
 
     
 }
