@@ -18,7 +18,7 @@ import javax.crypto.SecretKey;
  *
  * @author House
  */
-public class DesencriptadorxD {
+public class Desencriptador {
           public static void main(String[] args) throws IOException, FileNotFoundException, ClassNotFoundException, Exception {
          String tipoCifrado = "DES/ECB/PKCS5Padding";
          File file = new File("encriptado.txt");
@@ -29,6 +29,7 @@ public class DesencriptadorxD {
          File archivoDesencriptado = new File("desencriptado.png");
          FileOutputStream output = new FileOutputStream(archivoDesencriptado);
          output.write(desencriptado);
+         output.close();
     }
     private static byte[] decrypt(byte[] inpBytes,
         SecretKey key, String xform) throws Exception {
